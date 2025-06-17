@@ -54,9 +54,4 @@ The build output will be in the `build` folder.
 ## Notes
 
 - This is the frontend for shrtly.app. You will need to run or connect to a backend service for actual URL redirection and analytics.
-- Make sure your backend API endpoints are configured in the frontend code.
-
-## Learn More
-
-- [React documentation](https://reactjs.org/)
--
+- Make sure your backend API endpoints are configured in the frontend code
