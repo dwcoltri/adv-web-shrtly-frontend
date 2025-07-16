@@ -60,7 +60,7 @@ export default function StatsPage() {
                 <p>
                   <strong>Short URL: </strong>
                   <a
-                    href={`${APP_URL}/${stats.slug}`}
+                    href={`/${stats.slug}`}
                     className="text-blue-600 underline"
                     target="_blank"
                     rel="noopener noreferrer"
