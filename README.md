@@ -19,6 +19,8 @@ Clone the repository and install dependencies:
 npm install
 ```
 
+Set up your `.env` file (see `sample.env`)
+
 ### Running the App
 
 Start the development server:

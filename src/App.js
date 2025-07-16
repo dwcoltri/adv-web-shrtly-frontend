@@ -1,24 +1,22 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, useParams, useNavigate } from "react-router-dom";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useParams,
+} from "react-router-dom";
 import Home from "./components/Home";
+import StatsPage from "./components/StatsPage";
+import AllUrlsPage from "./components/AllUrlsPage";
 
-// Simulate a backend slug-to-URL mapping for demo purposes
-const slugMap = {};
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:3001/api";
 
 function Redirector() {
   const { slug } = useParams();
-  const navigate = useNavigate();
 
   React.useEffect(() => {
-    // Simulate fetching the long URL from a backend
-    const longUrl = slugMap[slug];
-    if (longUrl) {
-      window.location.replace(longUrl);
-    } else {
-      // If not found, redirect to home or show an error
-      navigate("/", { replace: true });
-    }
-  }, [slug, navigate]);
+    window.location.replace(`${API_BASE}/${slug}`);
+  }, [slug]);
 
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -28,21 +26,13 @@ function Redirector() {
 }
 
 function App() {
-  const [shortUrl, setShortUrl] = useState("");
-  const [clicks, setClicks] = useState(null);
-
-  const handleShorten = ({ longUrl, customSlug, expiration }) => {
-    const slug = customSlug || Math.random().toString(36).substr(2, 6);
-    slugMap[slug] = longUrl; // Store mapping in-memory for demo
-    setShortUrl(`https://shrtly.app/${slug}`);
-    setClicks(Math.floor(Math.random() * 100));
-  };
-
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home onShorten={handleShorten} shortUrl={shortUrl} clicks={clicks} />} />
+        <Route path="/" element={<Home />} />
         <Route path="/:slug" element={<Redirector />} />
+        <Route path="/:slug/stats" element={<StatsPage />} />
+        <Route path="/all" element={<AllUrlsPage />} />
       </Routes>
     </Router>
   );
