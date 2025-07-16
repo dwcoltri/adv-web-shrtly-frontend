@@ -86,7 +86,7 @@ export default function StatsPage() {
                 </p>
                 <div className="flex flex-col items-center">
                   <strong>QR Code:</strong>
-                  <QRCodeCanvas value={stats.shortUrl} size={128} />
+                  <QRCodeCanvas value={`${APP_URL}/${stats.slug}`} size={128} />
                 </div>
               </div>
             )}
